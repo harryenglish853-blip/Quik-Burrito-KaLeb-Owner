@@ -4,27 +4,38 @@
    ============================================================ */
 
 :root {
-  /* Food + Arizona palette */
-  --masa: #f6e3c5;
-  --tortilla: #e8c89a;
+  /* ------------------------------------------------------------------
+     BRAND TOKENS ARE NOT DECLARED HERE.
+     --brand, --sun, --ink, --paper, --cream and the rest are injected at
+     runtime by <ThemeStyle> from data/theme.ts, which is the single source of
+     truth for Quik Burrito's colour. The fallbacks below only exist so this
+     stylesheet stays readable on its own and so nothing renders colourless if
+     the style tag is ever stripped.
+     To change the brand palette, edit data/theme.ts — not this file.
+     ------------------------------------------------------------------ */
+  --brand: #c42b1c;
+  --brand-hot: #e0402c;
+  --on-brand: #ffffff;
+  --chile: #c42b1c;
+  --sun: #ffc24b;
+  --sunset: #f2812c;
+  --ink: #1a120b;
+  --ink-soft: #55432f;
   --char: #1a120b;
   --char-soft: #2a1d12;
+  --paper: #fff8ed;
+  --cream: #fff8ed;
+  --masa: #f6e3c5;
+  --tortilla: #e8c89a;
   --asada: #7a2e12;
-  --chile: #c42b1c;
   --salsa: #9b1b10;
-  --sunset: #f2812c;
-  --sun: #ffc24b;
   --cilantro: #4f7a3a;
   --lime: #a8c948;
   --steel: #8e9aa3;
-  --cream: #fff8ed;
-
-  --ink: #1a120b;
-  --ink-soft: #55432f;
-  --paper: #fff8ed;
-
-  --brand: var(--chile);
-  --brand-hot: #e0402c;
+  --paper-rgb: 255, 248, 237;
+  --surface-rgb: 255, 248, 237;
+  --brand-rgb: 196, 43, 28;
+  --accent-rgb: 255, 194, 75;
 
   /* Type scale — fluid, clamps at both ends */
   --step--1: clamp(0.82rem, 0.78rem + 0.2vw, 0.94rem);
@@ -145,7 +156,7 @@ button { font: inherit; }
 
 .btn {
   --btn-bg: var(--brand);
-  --btn-fg: #fff;
+  --btn-fg: var(--on-brand);
   display: inline-flex;
   align-items: center;
   justify-content: center;

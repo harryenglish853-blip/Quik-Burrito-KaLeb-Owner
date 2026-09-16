@@ -638,7 +638,7 @@
   font-family: var(--font-display), sans-serif;
   font-weight: 900;
   font-size: clamp(2.4rem, 9vw, 5rem);
-  color: var(--chile);
+  color: var(--brand);
   letter-spacing: -.04em;
   text-shadow: 0 2px 0 rgba(255, 255, 255, .3);
 }

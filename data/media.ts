@@ -12,6 +12,16 @@
  *   2. Set the matching `image` field in data/menu.ts, or `src` on <FoodPlate>.
  *   3. Flip `showSlotBadges` to false to hide the "photo slot" tags.
  */
+export const brandAssets: { logo: string | null; logoLight: string | null } = {
+  /**
+   * Filename under /public/media/brand/ — e.g. 'logo.svg'.
+   * null renders the type-set wordmark instead.
+   */
+  logo: null,
+  /** Light-on-dark variant used over the cinematic scenes, e.g. 'logo-light.svg'. */
+  logoLight: null,
+};
+
 export const mediaConfig = {
   /** Small corner tags marking each empty photo slot. Set false once real photos are in. */
   showSlotBadges: true,

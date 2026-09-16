@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Bebas_Neue, Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import '@/styles/plate.css';
 import '@/styles/chrome.css';
@@ -14,20 +13,9 @@ import { MenuDrawer } from '@/components/MenuDrawer';
 import { MobileOrderBar } from '@/components/MobileOrderBar';
 import { RestaurantFooter } from '@/components/RestaurantFooter';
 import { brand } from '@/data/brand';
-
-// Fonts are self-hosted by next/font — no layout shift, no third-party request.
-const display = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const body = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-});
+import { theme } from '@/data/theme';
+import { fontVariables } from '@/lib/fonts';
+import { ThemeStyle } from '@/components/ThemeStyle';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://quikburritoaz.com';
 
@@ -70,12 +58,15 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#c42b1c',
+  themeColor: theme.colors.primary,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={fontVariables}>
+      <head>
+        <ThemeStyle />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content

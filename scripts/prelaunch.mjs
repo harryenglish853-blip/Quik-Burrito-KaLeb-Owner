@@ -65,7 +65,25 @@ if (/locationId:/.test(body)) {
 }
 say('');
 
-say('  4. Photography');
+say('  4. Brand identity (colour + type)');
+const themeSrc = readFileSync(join(dataDir, 'theme.ts'), 'utf8');
+if (/^\s*brandVerified:\s*true/m.test(themeSrc)) {
+  say('     \u2713 Brand colours confirmed against the real logo.');
+} else {
+  open++;
+  say('     \u00b7 Colours in data/theme.ts are NOT confirmed as Quik Burrito\u2019s.');
+  say('       Run:  npm run brand:extract public/media/brand/logo.svg');
+  say('       then paste the result and set brandVerified: true.');
+}
+for (const block of themeSrc.match(/launchNotes:\s*\[([\s\S]*?)\n\s*\],/g) ?? []) {
+  for (const n of block.match(/'((?:[^'\\]|\\.)*)'/g) ?? []) {
+    open++;
+    say(`     \u00b7 ${n.slice(1, -1).replace(/\\'/g, "'")}`);
+  }
+}
+say('');
+
+say('  5. Photography');
 const mediaSrc = readFileSync(join(dataDir, 'media.ts'), 'utf8');
 if (/showSlotBadges:\s*true/.test(mediaSrc)) {
   open++;

@@ -2,25 +2,36 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { OrderOnlineButton, ViewMenuButton } from './actions';
 import { useMenuDrawer } from '@/lib/menu-drawer-context';
 import { useLocation } from '@/lib/location-context';
 
 export function SiteHeader() {
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const { openMenu } = useMenuDrawer();
   const { location } = useLocation();
+  const pathname = usePathname();
 
-  // Header starts transparent over the opening food shot, then turns solid the
-  // moment readability requires it.
+  // Only the cinematic homepage opens with a dark food shot behind the header.
+  // Every other page has a light background from the first pixel, so the header
+  // must be solid immediately there — otherwise the light-on-film nav text sits
+  // on a cream page and disappears.
+  const overFilm = pathname === '/';
+
+  // Over the film, the header starts transparent and turns solid the moment
+  // readability requires it.
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.55);
+    if (!overFilm) return;
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.55);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [overFilm]);
+
+  const solid = !overFilm || scrolled;
 
   useEffect(() => {
     if (!navOpen) return;

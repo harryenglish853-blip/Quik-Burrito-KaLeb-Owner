@@ -31,6 +31,7 @@ Other scripts:
 | --- | --- |
 | `npm run prelaunch` | Lists every fact still awaiting verification |
 | `npm run verify` | End-to-end browser checks (needs `npm i -D playwright`) |
+| `npm run brand:extract <logo>` | Reads the brand palette out of a logo file |
 | `npm run typecheck` | TypeScript, no emit |
 
 ---
@@ -100,11 +101,80 @@ in `data/locations.ts` so nobody is ever sent to a door that doesn't open.
    verbatim, the date and the source URL. Fewer real reviews beat many fake ones.
 4. **Add real photography.** See `public/media/README.md` for the exact filenames
    each slot expects, then set `showSlotBadges: false` in `data/media.ts`.
-5. **Add coordinates** from the Google Business Profile to enrich structured data.
-6. Set `NEXT_PUBLIC_SITE_URL` to the real domain (used by canonical URLs,
+5. **Match the brand.** Confirm colours and type against the real logo — see
+   *Brand colour and type* below — then set `brandVerified: true` in
+   `data/theme.ts`.
+6. **Add coordinates** from the Google Business Profile to enrich structured data.
+7. Set `NEXT_PUBLIC_SITE_URL` to the real domain (used by canonical URLs,
    sitemap, robots and structured data).
 
 `npm run prelaunch` tracks all of this.
+
+---
+
+## Brand colour and type
+
+**Everything brand lives in two files.**
+
+| What | Where |
+| --- | --- |
+| Colours | `data/theme.ts` |
+| Fonts | `lib/fonts.ts` |
+| Logo file | `data/media.ts` → `brandAssets` |
+
+`components/ThemeStyle.tsx` turns `data/theme.ts` into the CSS custom properties
+every stylesheet reads, injected in `<head>` before first paint. No component or
+stylesheet declares a brand colour of its own, so changing the palette is one
+edit — not a search-and-replace across a dozen files.
+
+### These are not Quik Burrito's brand colours yet
+
+The logo could not be reached from the build environment — `quikburritoaz.com`,
+Instagram and every listing site are blocked by the network egress proxy — so
+the current palette and the Bebas Neue / Inter pairing were chosen to suit a
+bold, fast, local Mexican restaurant. They are **not** claimed to be the real
+brand. `theme.brandVerified` stays `false` until someone confirms them, and
+`npm run prelaunch` keeps reporting it.
+
+### Matching the real brand
+
+**If you have the logo file** — the palette can be read straight out of it:
+
+```bash
+cp your-logo.svg public/media/brand/logo.svg
+npm run brand:extract public/media/brand/logo.svg
+```
+
+It prints the colours by prominence and a ready-to-paste `colors` block,
+including a WCAG contrast check on the button text. SVG reads the designer's
+exact hex values; PNG/JPG/WebP are decoded with `sharp` and bucketed by
+coverage. Nothing is written automatically — you review the suggestion first.
+
+Then paste it into `data/theme.ts` and set `brandVerified: true`.
+
+**If you have the hex codes**, put them straight into `theme.colors`.
+
+**For the logo itself**, save it to `public/media/brand/` and name it in
+`data/media.ts`:
+
+```ts
+export const brandAssets = {
+  logo: 'logo.svg',
+  logoLight: 'logo-light.svg',   // light-on-dark, for the cinematic scenes
+};
+```
+
+The type-set wordmark is replaced automatically. Until then the fallback
+wordmark uses the brand display font and brand colour, so the site is never
+missing its name.
+
+**For type**, `lib/fonts.ts` holds the active pair plus a table of candidates.
+Only the active pair is imported on purpose: `next/font` emits `@font-face` for
+everything imported, so a shelf of unused fonts would cost every visitor real
+download time on a site whose whole job is speed.
+
+The food and Arizona tones in `theme.scene` are scene art direction rather than
+brand identity, and deliberately stay put when the brand colours change.
 
 ---
 
@@ -135,10 +205,12 @@ scenes/                   The 13 cinematic chapters + CineScene primitive
 components/               Header, MenuDrawer, MobileOrderBar, actions,
                           LocationSelector, ReviewWall, FoodSubject, atmosphere
 data/                     Single source of truth — locations, menu, reviews,
-                          brand, media, verification contract
-lib/                      Location + menu-drawer context, analytics, device tier
+                          brand, theme (colour), media, verification contract
+lib/                      Location + menu-drawer context, analytics, device
+                          tier, fonts (typography)
 styles/                   globals · chrome · cine · scenes · pages · plate
-scripts/                  prelaunch report · end-to-end verification
+scripts/                  prelaunch report · end-to-end verification ·
+                          brand colour extraction
 ```
 
 **All restaurant data lives in `data/`.** No component hardcodes an address,
