@@ -54,3 +54,6 @@ export const body = Inter({
 
 /** Applied to <html> by the root layout. */
 export const fontVariables = `${display.variable} ${body.variable}`;
+
+/** False here; the preview build aliases this module to lib/fonts.preview.ts. */
+export const isPreviewFonts = false;

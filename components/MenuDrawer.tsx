@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { visibleMenu } from '@/data/menu';
 import { FoodPlate } from './FoodPlate';
 import { OrderOnlineButton, CallButton } from './actions';
 import { useMenuDrawer } from '@/lib/menu-drawer-context';
 import { useLocation } from '@/lib/location-context';
+import { IS_PREVIEW } from '@/lib/preview';
 
 /**
  * The menu is one tap away from anywhere — it never waits on the cinematic
@@ -138,9 +139,11 @@ export function MenuDrawer() {
           <OrderOnlineButton surface="menu_drawer" className="btn--block" />
           <div className="drawer__foot-row">
             <CallButton surface="menu_drawer" className="btn btn--secondary" />
-            <Link href="/menu" className="btn btn--quiet" onClick={closeMenu}>
-              Full menu page
-            </Link>
+            {IS_PREVIEW ? null : (
+              <SmartLink href="/menu" className="btn btn--quiet" onClick={closeMenu}>
+                Full menu page
+              </SmartLink>
+            )}
           </div>
         </div>
       </div>

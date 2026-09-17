@@ -59,6 +59,34 @@ raster crop of a JPEG, so it is soft at large sizes.
 
 ---
 
+## The shareable preview
+
+```bash
+npm run build:preview      # static export into ./out
+```
+
+`./out` is a self-contained copy of the site that runs from any directory — open
+`out/index.html` behind any static server, drop the folder on any host, or
+publish it as a link. Nothing in it needs Node.
+
+The preview is deliberately **one page**. The cinematic homepage already carries
+the menu, the reviews and the locations, so in preview mode the nav links become
+in-page anchors rather than routes that would have nowhere to go. That switch
+lives in `lib/preview.ts` and `components/SmartLink.tsx`, and is driven by
+`NEXT_PUBLIC_PREVIEW`; the real build is untouched and keeps its routes.
+
+Three things the export does that are worth knowing:
+
+- **Fonts** come from Google Fonts instead of being self-hosted. `next/font`
+  refuses the relative `assetPrefix` the export needs, so `scripts/build-preview.mjs`
+  swaps `lib/fonts.ts` for `lib/fonts.preview.ts` for the duration of the build
+  and always restores it.
+- **`_next` is renamed to `qb-assets`**, because some static hosts reserve paths
+  starting with an underscore.
+- **Asset URLs are relative**, so the export works from a subdirectory.
+
+---
+
 ## Run it locally
 
 ```bash
@@ -80,6 +108,7 @@ Other scripts:
 | `npm run prelaunch` | Lists every fact still awaiting verification |
 | `npm run verify` | End-to-end browser checks (needs `npm i -D playwright`) |
 | `npm run brand:extract <logo>` | Reads the brand palette out of a logo file |
+| `npm run build:preview` | Static, self-contained export into `./out` |
 | `npm run typecheck` | TypeScript, no emit |
 
 ---

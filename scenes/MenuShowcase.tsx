@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback } from 'react';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { CineScene, Layer, Copy, BuildArgs } from './CineScene';
 import { FoodPlate } from '@/components/FoodPlate';
 import { Vignette } from '@/components/atmosphere';
@@ -90,9 +90,9 @@ export function MenuShowcase() {
         </p>
         <div className="cta-row">
           <ViewMenuButton className="btn btn--order" label="View Full Menu" surface="showcase" />
-          <Link href="/menu" className="btn btn--onfilm">
+          <SmartLink href="/menu" className="btn btn--onfilm">
             Open menu page
-          </Link>
+          </SmartLink>
         </div>
       </Copy>
     </CineScene>

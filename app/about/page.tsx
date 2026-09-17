@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { brand } from '@/data/brand';
 import { InstagramReel } from '@/components/InstagramReel';
 import { AboutActions } from './AboutActions';
@@ -45,9 +45,9 @@ export default function AboutPage() {
             Quik Burrito there is.
           </p>
           <p>
-            <Link href="/menu" className="btn btn--secondary">
+            <SmartLink href="/menu" className="btn btn--secondary">
               See the menu
-            </Link>
+            </SmartLink>
           </p>
         </div>
 

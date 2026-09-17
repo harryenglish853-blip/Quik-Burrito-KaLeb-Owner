@@ -14,7 +14,8 @@ import { MobileOrderBar } from '@/components/MobileOrderBar';
 import { RestaurantFooter } from '@/components/RestaurantFooter';
 import { brand } from '@/data/brand';
 import { theme } from '@/data/theme';
-import { fontVariables } from '@/lib/fonts';
+import { fontVariables, isPreviewFonts } from '@/lib/fonts';
+import { IS_PREVIEW } from '@/lib/preview';
 import { ThemeStyle } from '@/components/ThemeStyle';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://quikburritoaz.com';
@@ -52,6 +53,9 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: '/' },
+  /* The preview is served from a subdirectory, so the icon must be relative;
+     Next would otherwise auto-link app/icon.svg at the domain root. */
+  icons: { icon: IS_PREVIEW ? 'icon.svg' : '/icon.svg' },
 };
 
 export const viewport: Viewport = {
@@ -65,6 +69,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={fontVariables}>
       <head>
+        {isPreviewFonts ? (
+          <>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap"
+            />
+            <style
+              dangerouslySetInnerHTML={{
+                __html:
+                  ':root{--font-display:"Archivo Black";--font-body:"Inter";}',
+              }}
+            />
+          </>
+        ) : null}
         <ThemeStyle />
       </head>
       <body>

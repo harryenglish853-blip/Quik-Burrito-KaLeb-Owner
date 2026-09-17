@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback } from 'react';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { CineScene, Layer, Copy, BuildArgs } from './CineScene';
 import { Vignette } from '@/components/atmosphere';
 import { ReviewWall } from '@/components/ReviewWall';
@@ -65,9 +65,9 @@ export function ReviewsScene() {
         <ReviewWall locationId={location.id} />
 
         <div className="cta-row reviewwall__cta">
-          <Link href="/reviews" className="btn btn--secondary">
+          <SmartLink href="/reviews" className="btn btn--secondary">
             Read more reviews
-          </Link>
+          </SmartLink>
         </div>
       </div>
     </CineScene>

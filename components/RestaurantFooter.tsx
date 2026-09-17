@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { Logo } from './Logo';
 import { openLocations, formatAddress, formatPhone, telHref, summarizeHours } from '@/data/locations';
 import { show } from '@/data/verification';
@@ -57,10 +57,10 @@ export function RestaurantFooter() {
           <div className="foot__col">
             <h3 className="foot__h">Explore</h3>
             <ul className="foot__links">
-              <li><Link href="/menu">Menu</Link></li>
-              <li><Link href="/locations">Locations</Link></li>
-              <li><Link href="/reviews">Reviews</Link></li>
-              <li><Link href="/about">About</Link></li>
+              <li><SmartLink href="/menu">Menu</SmartLink></li>
+              <li><SmartLink href="/locations">Locations</SmartLink></li>
+              <li><SmartLink href="/reviews">Reviews</SmartLink></li>
+              <li><SmartLink href="/about">About</SmartLink></li>
               <li>
                 <a href={brand.social.instagram.url} target="_blank" rel="noopener noreferrer">
                   Instagram

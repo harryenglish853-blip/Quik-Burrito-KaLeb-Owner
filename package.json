@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "prelaunch": "node scripts/prelaunch.mjs",
     "verify": "node scripts/verify.mjs",
-    "brand:extract": "node scripts/brand-extract.mjs"
+    "brand:extract": "node scripts/brand-extract.mjs",
+    "build:preview": "node scripts/build-preview.mjs"
   },
   "dependencies": {
     "gsap": "^3.12.5",

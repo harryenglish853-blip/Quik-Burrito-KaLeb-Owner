@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { OrderOnlineButton, ViewMenuButton } from './actions';
@@ -43,23 +43,23 @@ export function SiteHeader() {
   return (
     <header className={`hdr ${solid ? 'hdr--solid' : ''}`} data-solid={solid}>
       <div className="hdr__inner shell">
-        <Link href="/" className="hdr__logo" aria-label="Quik Burrito — home">
+        <SmartLink href="/" className="hdr__logo" aria-label="Quik Burrito — home">
           <Logo onFilm={!solid} small />
-        </Link>
+        </SmartLink>
 
         <nav className="hdr__nav" aria-label="Main">
           <button type="button" className="hdr__link" onClick={openMenu}>
             Menu
           </button>
-          <Link href="/locations" className="hdr__link">
+          <SmartLink href="/locations" className="hdr__link">
             Locations
-          </Link>
-          <Link href="/reviews" className="hdr__link">
+          </SmartLink>
+          <SmartLink href="/reviews" className="hdr__link">
             Reviews
-          </Link>
-          <Link href="/about" className="hdr__link">
+          </SmartLink>
+          <SmartLink href="/about" className="hdr__link">
             About
-          </Link>
+          </SmartLink>
         </nav>
 
         <div className="hdr__actions">
@@ -90,18 +90,18 @@ export function SiteHeader() {
 
       {navOpen ? (
         <div className="hdr__sheet" id="mobile-nav">
-          <Link href="/locations" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
+          <SmartLink href="/locations" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
             Locations
-          </Link>
-          <Link href="/reviews" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
+          </SmartLink>
+          <SmartLink href="/reviews" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
             Reviews
-          </Link>
-          <Link href="/about" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
+          </SmartLink>
+          <SmartLink href="/about" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
             About
-          </Link>
-          <Link href="/menu" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
+          </SmartLink>
+          <SmartLink href="/menu" className="hdr__sheet-link" onClick={() => setNavOpen(false)}>
             Full menu page
-          </Link>
+          </SmartLink>
         </div>
       ) : null}
     </header>

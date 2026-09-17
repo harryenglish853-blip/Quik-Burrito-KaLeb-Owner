@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import {
   openLocations,
   getLocation,
@@ -108,9 +108,9 @@ export default async function LocationPage({ params }: Props) {
                   </figure>
                 ))}
             </div>
-            <Link href="/menu" className="btn btn--secondary">
+            <SmartLink href="/menu" className="btn btn--secondary">
               See the full menu
-            </Link>
+            </SmartLink>
           </section>
         </div>
 

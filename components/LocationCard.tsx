@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { SmartLink } from '@/components/SmartLink';
 import { Location, formatAddress, summarizeHours } from '@/data/locations';
 import { show } from '@/data/verification';
 import { OrderOnlineButton, CallButton, DirectionsButton } from './actions';
@@ -46,12 +46,12 @@ export function LocationCard({
         </div>
         {!compact ? (
           <div className="loccard__row">
-            <Link href={`/locations/${location.slug}`} className="btn btn--quiet">
+            <SmartLink href={`/locations/${location.slug}`} className="btn btn--quiet">
               Store details
-            </Link>
-            <Link href={`/reviews#${location.slug}`} className="btn btn--quiet">
+            </SmartLink>
+            <SmartLink href={`/reviews#${location.slug}`} className="btn btn--quiet">
               Reviews
-            </Link>
+            </SmartLink>
           </div>
         ) : null}
         {onSelect && !selected ? (

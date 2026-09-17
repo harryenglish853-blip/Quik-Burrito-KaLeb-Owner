@@ -1,5 +1,6 @@
 import React from 'react';
 import { brandAssets } from '@/data/media';
+import { IS_PREVIEW } from '@/lib/preview';
 
 /**
  * The wordmark.
@@ -25,7 +26,7 @@ export function Logo({ onFilm = false, small = false }: { onFilm?: boolean; smal
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src={`/media/brand/${src}`}
+        src={`${IS_PREVIEW ? '' : '/'}media/brand/${src}`}
         alt="Quik Burrito"
         className={`logo-img ${small ? 'logo-img--sm' : ''}`}
       />
