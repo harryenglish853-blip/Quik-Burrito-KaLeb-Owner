@@ -78,13 +78,32 @@ lives in `lib/preview.ts` and `components/SmartLink.tsx`, and is driven by
 
 Three things the export does that are worth knowing:
 
-- **Fonts** come from Google Fonts instead of being self-hosted. `next/font`
-  refuses the relative `assetPrefix` the export needs, so `scripts/build-preview.mjs`
-  swaps `lib/fonts.ts` for `lib/fonts.preview.ts` for the duration of the build
-  and always restores it.
+- **Fonts are self-hosted**, from `public/media/fonts`. `next/font` refuses the
+  relative `assetPrefix` the export needs, so `scripts/build-preview.mjs` swaps
+  `lib/fonts.ts` for `lib/fonts.preview.ts` for the duration of the build and
+  always restores it. The subsets come from what `next/font` already downloads
+  during a normal build — `npm run fonts:extract` refreshes them. **The export
+  makes no network request at all**, so a blocked or slow font host can never
+  leave the page in a system sans with the brand typography gone.
 - **`_next` is renamed to `qb-assets`**, because some static hosts reserve paths
   starting with an underscore.
-- **Asset URLs are relative**, so the export works from a subdirectory.
+- **Asset URLs are relative.** Every reference to `/public/media` goes through
+  `mediaUrl()` in `lib/preview.ts`, and the build fails if a root-absolute asset
+  path survives into the export — a leading slash points at the wrong host root
+  from a subdirectory and 404s silently, which is how a broken image shipped
+  once.
+
+Check the export before sharing it:
+
+```bash
+npx serve out            # or any static server
+npm i -D playwright
+BASE=http://localhost:3000 npm run verify:preview
+```
+
+It loads every breakpoint, scrolls the whole page so lazy images are requested,
+and fails if any image did not decode, any request 404'd, any link is dead, or
+the page scrolls sideways.
 
 ---
 
@@ -110,6 +129,8 @@ Other scripts:
 | `npm run verify` | End-to-end browser checks (needs `npm i -D playwright`) |
 | `npm run brand:extract <logo>` | Reads the brand palette out of a logo file |
 | `npm run build:preview` | Static, self-contained export into `./out` |
+| `npm run verify:preview` | Browser checks against the export, served from a subdirectory |
+| `npm run fonts:extract` | Refreshes the preview's self-hosted font subsets |
 | `npm run typecheck` | TypeScript, no emit |
 
 ---

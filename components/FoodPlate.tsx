@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import type { FoodTone } from '@/data/menu';
 import { mediaConfig } from '@/data/media';
+import { mediaUrl } from '@/lib/preview';
 
 /**
  * A food image slot.
@@ -63,7 +64,7 @@ export function FoodPlate({
         style={{ aspectRatio: ratio }}
       >
         <Image
-          src={`/media/${src}`}
+          src={mediaUrl(src)}
           alt={alt ?? ''}
           fill
           sizes={sizes}

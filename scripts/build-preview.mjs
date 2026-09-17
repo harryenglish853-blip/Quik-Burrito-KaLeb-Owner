@@ -41,6 +41,7 @@ try {
   } else {
     makeRootRefsRelative('out');
     renameAssetDir('out');
+    assertNoRootAbsoluteAssets('out');
   }
 } finally {
   if (swapped) {
@@ -118,4 +119,39 @@ function renameAssetDir(dir) {
     renameSync(oldDir, newDir);
   }
   console.log(`  Renamed _next -> qb-assets and rewrote ${touched} file(s).`);
+}
+
+
+/**
+ * Fails the build if any root-absolute asset URL survives into the export.
+ *
+ * The preview is served from a subdirectory, so a leading slash points at the
+ * wrong host root and the asset 404s silently — which is exactly how a broken
+ * image shipped once. Checks rendered attributes only; absolute paths inside
+ * the RSC payload are metadata, not fetches.
+ */
+function assertNoRootAbsoluteAssets(dir) {
+  const offenders = [];
+  const attr = /(?:src|href)="(\/[^"/][^"]*)"/g;
+
+  const walk = (d) => {
+    for (const entry of readdirSync(d)) {
+      const full = join(d, entry);
+      if (statSync(full).isDirectory()) {
+        walk(full);
+      } else if (entry.endsWith('.html')) {
+        const src = readFileSync(full, 'utf8');
+        for (const m of src.matchAll(attr)) offenders.push(`${full}  ${m[1]}`);
+      }
+    }
+  };
+  walk(dir);
+
+  if (offenders.length) {
+    console.error('\n  Root-absolute asset paths would 404 in the preview:\n');
+    for (const o of [...new Set(offenders)]) console.error('    ' + o);
+    console.error('\n  Route them through mediaUrl() in lib/preview.ts.\n');
+    process.exit(1);
+  }
+  console.log('  No root-absolute asset paths. \u2713');
 }

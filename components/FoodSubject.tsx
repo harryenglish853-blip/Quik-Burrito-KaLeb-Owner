@@ -1,6 +1,7 @@
 import React from 'react';
 import { Steam } from './atmosphere';
 import { mediaConfig } from '@/data/media';
+import { mediaUrl } from '@/lib/preview';
 import type { FoodTone } from '@/data/menu';
 
 export type SubjectVariant =
@@ -86,7 +87,7 @@ export function FoodSubject({
       >
         <div className="mslot mslot--photo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/media/${src}`} alt={alt ?? ''} loading="lazy" decoding="async" />
+          <img src={mediaUrl(src)} alt={alt ?? ''} loading="lazy" decoding="async" />
           {steam ? <Steam count={3} className="mslot__steam" /> : null}
         </div>
       </div>

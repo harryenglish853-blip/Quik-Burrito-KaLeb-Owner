@@ -15,7 +15,7 @@ import { RestaurantFooter } from '@/components/RestaurantFooter';
 import { brand } from '@/data/brand';
 import { theme } from '@/data/theme';
 import { fontVariables, isPreviewFonts } from '@/lib/fonts';
-import { IS_PREVIEW } from '@/lib/preview';
+import { IS_PREVIEW, mediaUrl } from '@/lib/preview';
 import { ThemeStyle } from '@/components/ThemeStyle';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://quikburritoaz.com';
@@ -70,20 +70,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={fontVariables}>
       <head>
         {isPreviewFonts ? (
-          <>
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap"
-            />
-            <style
-              dangerouslySetInnerHTML={{
-                __html:
-                  ':root{--font-display:"Archivo Black";--font-body:"Inter";}',
-              }}
-            />
-          </>
+          /* The preview self-hosts the two families from /public/media/fonts so
+             the export makes no network request at all. It previously pulled
+             them from Google Fonts, which meant a blocked or slow request left
+             the page in a system sans with the brand typography gone. */
+          <style
+            dangerouslySetInnerHTML={{
+              __html: [
+                '@font-face{font-family:"Archivo Black";font-style:normal;font-weight:400;',
+                'font-display:swap;src:url("' + mediaUrl('fonts/archivo-black-latin.woff2') + '") format("woff2")}',
+                '@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;',
+                'font-display:swap;src:url("' + mediaUrl('fonts/inter-latin.woff2') + '") format("woff2")}',
+                ':root{--font-display:"Archivo Black";--font-body:"Inter";}',
+              ].join(''),
+            }}
+          />
         ) : null}
         <ThemeStyle />
       </head>

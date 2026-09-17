@@ -28,3 +28,17 @@ export function href(route: string): string {
   if (route.startsWith('/reviews')) return '#reviews';
   return '#opening';
 }
+
+/**
+ * URL for a file under /public/media.
+ *
+ * The real site serves from a domain root, so assets are root-absolute. The
+ * preview export is served from a subdirectory, where a leading slash points at
+ * the wrong place and the asset 404s. Every media reference goes through here so
+ * the two cases can never drift apart again — `scripts/build-preview.mjs` fails
+ * the build if a root-absolute asset path survives into the export.
+ */
+export function mediaUrl(path: string): string {
+  const clean = path.replace(/^\/+/, '');
+  return `${IS_PREVIEW ? '' : '/'}media/${clean}`;
+}
