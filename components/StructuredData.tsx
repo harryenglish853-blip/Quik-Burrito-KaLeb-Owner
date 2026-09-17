@@ -29,7 +29,11 @@ export function RestaurantSchema({ location }: { location: Location }) {
     url: `${SITE}/locations/${location.slug}`,
     servesCuisine: [...brand.cuisine],
     priceRange: '$',
-    sameAs: [brand.social.instagram.url, brand.social.facebook, brand.website],
+    /* Instagram and the official site only. The Facebook page is deliberately
+       not listed: sameAs associates a profile with this business entity, and a
+       Facebook page carries its own Recommendations — reviews are confined to
+       Google, Yelp and this site. */
+    sameAs: [brand.social.instagram.url, brand.website],
   };
 
   if (address) {

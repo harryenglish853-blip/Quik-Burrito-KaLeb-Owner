@@ -172,10 +172,13 @@
   padding: .1rem .35rem;
   font-size: .9em;
 }
+/* Two destinations, Google and Yelp — cap the row so they read as a pair
+   rather than two small cards stranded at the left of a wide grid. */
 .nowall__sources {
   list-style: none; margin: 0; padding: 0;
   display: grid; gap: .6rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  max-width: 660px;
 }
 .srccard {
   display: grid;

@@ -41,6 +41,10 @@ export type Location = {
 };
 
 const SRC_YELP_ANTHEM = 'https://www.yelp.com/biz/quik-burrito-anthem-2';
+/** Confirmed directly by the owner. */
+const SRC_OWNER = 'Confirmed by the owner';
+/** Yelp link as supplied by the owner. */
+const YELP_ANTHEM_SHORT = 'https://yelp.to/6GGDkM9gZm';
 const SRC_APPLE_MAPS_ANTHEM = 'https://maps.apple.com/place?place-id=IBC134F06F8199029';
 const SRC_OFFICIAL = 'https://www.quikburritoaz.com/';
 
@@ -53,7 +57,8 @@ export const locations: Location[] = [
     status: 'open',
     address: verified(
       { street: '3434 W Anthem Way', city: 'Anthem', state: 'AZ', zip: '85086' },
-      SRC_YELP_ANTHEM,
+      SRC_OWNER,
+      'Confirmed by the owner, and matches the public Yelp listing.',
     ),
     phone: verified('+14805345768', SRC_YELP_ANTHEM),
     hours: verified(
@@ -79,10 +84,10 @@ export const locations: Location[] = [
     mapsUrl: verified(
       'https://www.google.com/maps/dir/?api=1&destination=' +
         encodeURIComponent('Quik Burrito, 3434 W Anthem Way, Anthem, AZ 85086'),
-      SRC_YELP_ANTHEM,
+      SRC_OWNER,
       'Address-based directions link — resolves correctly without hardcoded coordinates.',
     ),
-    reviewUrl: verified(SRC_YELP_ANTHEM, SRC_YELP_ANTHEM),
+    reviewUrl: verified(YELP_ANTHEM_SHORT, SRC_OWNER),
     coordinates: unverified(
       'No authoritative lat/lng obtained. Directions use the full address instead, which is accurate. ' +
         'Add coordinates from Google Business Profile to enrich structured data.',

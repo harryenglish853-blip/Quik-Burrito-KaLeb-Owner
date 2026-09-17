@@ -7,10 +7,10 @@
  *
  * This array ships EMPTY on purpose.
  *
- * Real quotes do exist publicly (Yelp, Tripadvisor, Facebook, Nextdoor), but a
- * reviewer's display name, exact wording and date could not be captured from an
- * authoritative source during the build, and attributing a quote to a made-up
- * name is exactly the failure mode this file exists to prevent.
+ * Real quotes do exist publicly, but a reviewer's display name, exact wording
+ * and date could not be captured from an authoritative source during the build,
+ * and attributing a quote to a made-up name is exactly the failure mode this
+ * file exists to prevent.
  *
  * TO POPULATE (5 minutes, one time):
  *   1. Open the location's review page — see `reviewSources` below.
@@ -22,10 +22,19 @@
  *      attribution and a link back; `sourceUrl` handles that).
  *
  * Until then the site shows a real, honest panel that links customers straight
- * to the live review pages. Fewer real reviews beat many fake ones.
+ * to Google and Yelp. Fewer real reviews beat many fake ones.
+ *
+ * Reviews appear in three places and nowhere else: Google, Yelp, and quoted on
+ * this site from the array below.
  */
 
-export type ReviewSourceName = 'Google' | 'Yelp' | 'Tripadvisor' | 'Facebook' | 'Nextdoor';
+/**
+ * Reviews live in exactly two places off-site — Google and Yelp — plus whatever
+ * is quoted on this site itself. Set by the owner; do not widen it. Tripadvisor,
+ * Facebook and Nextdoor were removed for that reason, not because they had no
+ * content.
+ */
+export type ReviewSourceName = 'Google' | 'Yelp';
 
 export type Review = {
   /** Must match a Location.id — reviews are never shown under the wrong store. */
@@ -46,7 +55,10 @@ export const reviews: Review[] = [
   // Intentionally empty. See the header above before adding anything.
 ];
 
-/** Live review destinations. These are real pages — used for "READ MORE REVIEWS". */
+/**
+ * Live review destinations. Real pages, used for "READ MORE REVIEWS".
+ * Google and Yelp only — see ReviewSourceName.
+ */
 export type ReviewSource = {
   locationId: string;
   source: ReviewSourceName;
@@ -60,27 +72,23 @@ export type ReviewSource = {
 export const reviewSources: ReviewSource[] = [
   {
     locationId: 'anthem',
+    source: 'Google',
+    // Resolves to the Google listing for the confirmed address, where the
+    // reviews and the star average live. Swap in the Business Profile's direct
+    // place link if you want to skip the lookup hop.
+    url:
+      'https://www.google.com/maps/search/?api=1&query=' +
+      encodeURIComponent('Quik Burrito, 3434 W Anthem Way, Anthem, AZ 85086'),
+    label: 'Reviews on Google',
+  },
+  {
+    locationId: 'anthem',
     source: 'Yelp',
-    url: 'https://www.yelp.com/biz/quik-burrito-anthem-2',
-    label: 'Reviews and photos for the Anthem store',
-  },
-  {
-    locationId: 'anthem',
-    source: 'Facebook',
-    url: 'https://www.facebook.com/p/Quik-Burrito-61556653532092/',
-    label: 'Posts and recommendations',
-  },
-  {
-    locationId: 'anthem',
-    source: 'Nextdoor',
-    url: 'https://nextdoor.com/pages/quik-burrito-phoenix-az/',
-    label: 'What neighbors are saying',
-  },
-  {
-    locationId: 'anthem',
-    source: 'Tripadvisor',
-    url: 'https://www.tripadvisor.com/Restaurant_Review-g31310-d27902213-Reviews-Quik_Burrito-Phoenix_Arizona.html',
-    label: 'Traveler reviews',
+    // Supplied by the owner. Canonical long form is
+    // https://www.yelp.com/biz/quik-burrito-anthem-2 — swap it in if this short
+    // link is ever retired.
+    url: 'https://yelp.to/6GGDkM9gZm',
+    label: 'Reviews on Yelp',
   },
 ];
 

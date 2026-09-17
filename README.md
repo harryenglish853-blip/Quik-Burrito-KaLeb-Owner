@@ -33,7 +33,8 @@ the pace is yours. Scroll back up anywhere and the move runs in reverse.
    the scroll.
 4. **The reviews section** — this is the honest one. Worth a sentence: no
    testimonial is invented, and the moment they hand over real reviews it fills
-   in automatically.
+   in automatically. Reviews live in exactly three places — Google, Yelp, and
+   quoted on this site — and nowhere else.
 5. **Locations** — pick the store, watch the phone, hours and ordering follow it.
 6. **Resize to a phone**, or open it on one. The composition restacks — it is
    not the desktop layout shrunk down.
@@ -131,8 +132,7 @@ That rule is enforced in code, not by good intentions:
   reviewer display names, exact wording and dates could not be captured from an
   authoritative source during this build, and attributing a quote to an invented
   name is precisely the failure this guards against. Until real reviews are
-  entered, the reviews section says so plainly and links to the live Yelp,
-  Facebook, Nextdoor and Tripadvisor pages.
+  entered, the reviews section says so plainly and links to Google and Yelp.
 - `components/StructuredData.tsx` omits any field it cannot verify, and publishes
   **no** `aggregateRating` unless real rated reviews exist.
 - `npm run prelaunch` prints everything still outstanding.
