@@ -284,11 +284,13 @@
 .obar__order {
   flex: 1 1 auto;
   min-height: 3.25rem;
-  font-size: 1rem;
-  padding: .7rem 1rem;
+  font-size: clamp(.78rem, 3.4vw, 1rem);
+  padding: .7rem .75rem;
+  white-space: nowrap;
 }
 .obar__mini { display: flex; gap: .35rem; flex: 0 0 auto; }
 .obar__mini-btn {
+  letter-spacing: .02em;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -461,12 +463,15 @@ body { padding-bottom: var(--mobile-bar-h); }
 
 /* Real logo file, when one has been dropped into /public/media/brand/. */
 .logo-img {
-  height: 2.4rem;
+  height: 3.4rem;
   width: auto;
   display: block;
 }
-.logo-img--sm { height: 2rem; }
+.logo-img--sm { height: 3rem; }
 @media (max-width: 767px) {
-  .logo-img { height: 2rem; }
-  .logo-img--sm { height: 1.75rem; }
+  .logo-img { height: 2.9rem; }
+  .logo-img--sm { height: 2.6rem; }
 }
+/* The badge is black-on-transparent, so give it a ring of breathing room when
+   it sits on the solid white header. */
+.hdr--solid .logo-img { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .25)); }

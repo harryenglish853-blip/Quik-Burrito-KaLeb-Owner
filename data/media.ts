@@ -17,7 +17,7 @@ export const brandAssets: { logo: string | null; logoLight: string | null } = {
    * Filename under /public/media/brand/ — e.g. 'logo.svg'.
    * null renders the type-set wordmark instead.
    */
-  logo: null,
+  logo: 'logo.png',
   /** Light-on-dark variant used over the cinematic scenes, e.g. 'logo-light.svg'. */
   logoLight: null,
 };

@@ -130,7 +130,7 @@
   margin: 0; padding: 0;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
 }
 .ticket { transform: rotate(var(--tilt, 0deg)); }
 .ticket__inner {
@@ -175,7 +175,7 @@
 .nowall__sources {
   list-style: none; margin: 0; padding: 0;
   display: grid; gap: .6rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
 }
 .srccard {
   display: grid;

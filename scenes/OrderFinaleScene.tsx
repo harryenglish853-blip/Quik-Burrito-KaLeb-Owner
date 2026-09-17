@@ -3,7 +3,6 @@
 import React, { useCallback } from 'react';
 import { CineScene, Layer, Copy, BuildArgs } from './CineScene';
 import { FoodSubject } from '@/components/FoodSubject';
-import { Vignette } from '@/components/atmosphere';
 import { OrderOnlineButton, ViewMenuButton, CallButton, DirectionsButton } from '@/components/actions';
 import { brand } from '@/data/brand';
 
@@ -36,9 +35,8 @@ export function OrderFinaleScene() {
         <FoodSubject variant="bag" slotName="takeout-bag" />
       </Layer>
 
-      <Vignette strength={0.4} />
 
-      <Copy className="on-film">
+      <Copy className="on-brand">
         <p className="copy__kicker">{brand.campaign.finale[0]}</p>
         <h2 className="copy__title copy__title--huge">{brand.campaign.finale[1]}</h2>
         <div className="cta-row">

@@ -55,13 +55,16 @@
 .copy > * { pointer-events: auto; }
 
 .copy__kicker {
+  display: inline-block;
   font-family: var(--font-display), sans-serif;
   font-size: var(--step--1);
   font-weight: 800;
   letter-spacing: .26em;
   text-transform: uppercase;
-  color: var(--sun);
-  margin: 0 0 .9rem;
+  color: var(--brand);
+  margin: 0 0 1rem;
+  border-bottom: 4px solid var(--brand);
+  padding-bottom: .2rem;
 }
 
 .copy__title {
@@ -104,61 +107,63 @@
 
 .bd--counter {
   background:
-    radial-gradient(70% 55% at 72% 18%, rgba(255, 214, 128, .85) 0%, transparent 62%),
-    radial-gradient(90% 70% at 18% 84%, rgba(122, 46, 18, .55) 0%, transparent 66%),
-    linear-gradient(172deg, #a86f3c 0%, #77441f 44%, #43260f 100%);
+    radial-gradient(60% 50% at 74% 20%, rgba(253, 253, 0, .20) 0%, transparent 62%),
+    radial-gradient(80% 65% at 22% 86%, rgba(253, 253, 0, .08) 0%, transparent 66%),
+    linear-gradient(170deg, #1c1c1c 0%, #0d0d0d 48%, #000000 100%);
 }
 .bd--macro {
   background:
-    radial-gradient(85% 75% at 44% 42%, #ffcb72 0%, #d4671c 38%, #8c2f0c 72%, #4a1606 100%);
+    radial-gradient(80% 70% at 44% 42%, rgba(253, 253, 0, .26) 0%, transparent 58%),
+    linear-gradient(165deg, #232300 0%, #111100 42%, #000000 100%);
 }
 .bd--grill {
   background:
-    radial-gradient(70% 55% at 50% 78%, rgba(255,120,30,.55) 0%, transparent 60%),
-    linear-gradient(180deg, #120b06 0%, #2a150a 55%, #4a1d09 100%);
+    radial-gradient(64% 50% at 50% 82%, rgba(253, 253, 0, .30) 0%, transparent 62%),
+    linear-gradient(180deg, #000000 0%, #141400 62%, #2a2a00 100%);
 }
 .bd--prep {
   background:
-    radial-gradient(100% 70% at 50% 0%, rgba(255,240,215,.5) 0%, transparent 55%),
-    linear-gradient(180deg, #d8c6ad 0%, #8d7358 60%, #4a382a 100%);
+    radial-gradient(90% 60% at 50% 0%, rgba(253, 253, 0, .18) 0%, transparent 58%),
+    linear-gradient(180deg, #1f1f1f 0%, #101010 58%, #000000 100%);
 }
 .bd--table {
   background:
-    radial-gradient(90% 70% at 50% 4%, rgba(255, 220, 150, .6) 0%, transparent 62%),
-    linear-gradient(180deg, #9a6634 0%, #6b4526 52%, #3a2110 100%);
+    radial-gradient(85% 60% at 50% 4%, rgba(253, 253, 0, .22) 0%, transparent 60%),
+    linear-gradient(180deg, #1a1a1a 0%, #0c0c0c 56%, #000000 100%);
 }
 .bd--birria {
   background:
-    radial-gradient(70% 58% at 42% 58%, rgba(255, 150, 70, .7) 0%, transparent 60%),
-    linear-gradient(180deg, #5d1d0b 0%, #8a2a10 46%, #2e0d05 100%);
+    radial-gradient(66% 54% at 44% 60%, rgba(253, 253, 0, .34) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0a00 0%, #1e1e00 48%, #000000 100%);
 }
+/* Morning stays light — the one chapter that opens the site up. */
 .bd--morning {
   background:
-    radial-gradient(85% 70% at 78% 12%, rgba(255,232,180,.95) 0%, transparent 58%),
-    linear-gradient(180deg, #ffe7bd 0%, #f6c983 45%, #d79a52 100%);
+    radial-gradient(80% 66% at 78% 14%, rgba(253, 253, 0, .85) 0%, transparent 56%),
+    linear-gradient(180deg, #fffdf0 0%, #fdfdd6 42%, #e8e89a 100%);
 }
 .bd--day {
-  background: linear-gradient(180deg, #8fc7e8 0%, #ffd79a 48%, #f2812c 78%, #2c1608 100%);
+  background: linear-gradient(180deg, #fdfd00 0%, #e0e000 26%, #6b6b00 58%, #141400 82%, #000000 100%);
 }
 .bd--people {
   background:
-    radial-gradient(85% 65% at 34% 22%, rgba(255, 220, 160, .7) 0%, transparent 62%),
-    linear-gradient(180deg, #7d5230 0%, #3d2513 100%);
+    radial-gradient(80% 62% at 32% 22%, rgba(253, 253, 0, .20) 0%, transparent 62%),
+    linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
 }
 .bd--paper {
   background:
-    radial-gradient(90% 70% at 50% 0%, #fffaf0 0%, transparent 60%),
-    linear-gradient(180deg, #f3e6d0 0%, #dcc7a6 100%);
+    radial-gradient(90% 70% at 50% 0%, #ffffff 0%, transparent 58%),
+    linear-gradient(180deg, #f7f7f7 0%, #e6e6e6 100%);
 }
 .bd--map {
   background:
-    radial-gradient(75% 62% at 50% 42%, rgba(242, 129, 44, .5) 0%, transparent 64%),
-    linear-gradient(180deg, #4a2c16 0%, #35200f 46%, #1f1409 100%);
+    radial-gradient(72% 60% at 50% 42%, rgba(253, 253, 0, .22) 0%, transparent 64%),
+    linear-gradient(180deg, #171717 0%, #0b0b0b 48%, #000000 100%);
 }
+/* The finale is the one full-yellow moment on the site — the badge, blown up. */
 .bd--finale {
   background:
-    radial-gradient(85% 70% at 50% 40%, rgba(255,194,75,.5) 0%, transparent 60%),
-    linear-gradient(180deg, #7a2e12 0%, #c42b1c 45%, #1a120b 100%);
+    radial-gradient(75% 62% at 50% 42%, #fdfd00 0%, #d4d400 44%, #3d3d00 78%, #000000 100%);
 }
 
 /* Fine grain over every backdrop so gradients never band. */
@@ -726,7 +731,7 @@
   .cine--split-r .copy {
     align-self: end;
     margin-top: auto;
-    padding: 1.5rem var(--gutter) 5vh;
+    padding: 2.6rem var(--gutter) 5vh;
   }
   .cine--split .copy::before,
   .cine--split-r .copy::before {
@@ -987,7 +992,13 @@
 .cta-row--two { margin-top: .7rem; }
 @media (max-width: 767px) {
   .cta-row--two { flex-direction: row; }
-  .cta-row--two > * { width: auto; flex: 1 1 0; }
+  .cta-row--two > * {
+    width: auto;
+    flex: 1 1 0;
+    font-size: clamp(.78rem, 3.6vw, 1rem);
+    padding-inline: .75rem;
+    white-space: nowrap;
+  }
 }
 
 /* Keep the bottom of a cinematic chapter clear of the sticky order bar. */
@@ -1035,3 +1046,43 @@
   .cine--stacked .layer--subject { align-items: center; padding-top: 0; }
   .cine--stacked .copy { align-self: center; margin-top: 0; padding-bottom: 1rem; }
 }
+
+/* ============================================================
+   YELLOW-FIELD SCENES
+   The finale blows the badge up to fill the screen. On a yellow
+   field the light-on-film treatment inverts: black type, black
+   rules, and a black primary button with yellow lettering — the
+   badge's own logic, flipped. White on yellow is 1.1:1 and is
+   never used.
+   ============================================================ */
+.on-brand,
+.on-brand .copy__title,
+.on-brand .copy__line {
+  color: #000;
+  text-shadow: none;
+}
+.on-brand .copy__kicker {
+  color: #000;
+  border-bottom-color: #000;
+}
+.on-brand .copy__sub { color: rgba(0, 0, 0, .78); }
+
+/* Primary inverts to black-on-yellow-field with yellow lettering: 19.2:1. */
+.on-brand .btn--order {
+  --btn-bg: #000;
+  --btn-fg: var(--brand);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3), 0 16px 34px -14px rgba(0, 0, 0, .7);
+}
+.on-brand .btn--order:hover { --btn-bg: #1a1a1a; }
+
+/* Secondaries become black outlines on the yellow. */
+.on-brand .btn--onfilm {
+  --btn-bg: transparent;
+  --btn-fg: #000;
+  border-color: rgba(0, 0, 0, .75);
+  backdrop-filter: none;
+}
+.on-brand .btn--onfilm:hover { background: rgba(0, 0, 0, .1); }
+
+/* The vignette would muddy a yellow field. */
+.sc-finale .vignette { display: none; }

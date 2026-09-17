@@ -52,10 +52,10 @@ the labels go.
 
 ### What to say about the colours
 
-The palette and fonts are placeholders chosen to suit the brand, not their real
-ones — their logo could not be reached from the build environment. Ask for the
-logo file in the meeting; `npm run brand:extract` reads the exact palette out of
-it, and the whole site recolours from a single file.
+The palette and type come straight off their badge: black, `#FDFD00` yellow and
+white, with Archivo Black matching the PHX / AZ lettering. The one thing still
+worth asking for is the **vector original** of the logo — the current file is a
+raster crop of a JPEG, so it is soft at large sizes.
 
 ---
 
@@ -175,32 +175,34 @@ every stylesheet reads, injected in `<head>` before first paint. No component or
 stylesheet declares a brand colour of its own, so changing the palette is one
 edit — not a search-and-replace across a dozen files.
 
-### These are not Quik Burrito's brand colours yet
+### The palette comes from the badge
 
-The logo could not be reached from the build environment — `quikburritoaz.com`,
-Instagram and every listing site are blocked by the network egress proxy — so
-the current palette and the Bebas Neue / Inter pairing were chosen to suit a
-bold, fast, local Mexican restaurant. They are **not** claimed to be the real
-brand. `theme.brandVerified` stays `false` until someone confirms them, and
-`npm run prelaunch` keeps reporting it.
+Quik Burrito's logo is a circular badge: a black field, a bright yellow outer
+ring, a white inner ring, and a foil-wrapped burrito in high-contrast stencil
+with PHX and AZ underlined in yellow. `npm run brand:extract` read it directly:
 
-### Matching the real brand
+| Colour | Hex | Coverage | Role on the site |
+| --- | --- | --- | --- |
+| Black | `#000000` | 17.6% | Brand surfaces, the cinematic scenes, the footer |
+| White | `#FFFFFF` | 13.3% | Type on black, the utility pages |
+| Yellow | `#FDFD00` | 8.3% | Every primary action, rules and kickers |
 
-**If you have the logo file** — the palette can be read straight out of it:
+Three colours on the badge, three on the site. Black carries the surfaces,
+white carries the type, yellow carries the action.
 
-```bash
-cp your-logo.svg public/media/brand/logo.svg
-npm run brand:extract public/media/brand/logo.svg
-```
+**Contrast.** Black on yellow is 19.2:1 and white on black is 21:1 — both past
+WCAG AAA. Yellow is never set as type on white, where it measures 1.07:1 and is
+effectively invisible. The one full-yellow moment, the ordering finale, inverts
+instead: black headline, and a black button with yellow lettering.
 
-It prints the colours by prominence and a ready-to-paste `colors` block,
-including a WCAG contrast check on the button text. SVG reads the designer's
-exact hex values; PNG/JPG/WebP are decoded with `sharp` and bucketed by
-coverage. Nothing is written automatically — you review the suggestion first.
+**Type.** The PHX / AZ lettering is a heavy, slightly wide grotesque with flat
+terminals. Archivo Black is the closest match on Google Fonts and is what the
+site uses. If the badge was set in a licensed face, send the files and it can be
+self-hosted — a change to `lib/fonts.ts` only.
 
-Then paste it into `data/theme.ts` and set `brandVerified: true`.
-
-**If you have the hex codes**, put them straight into `theme.colors`.
+**The underline device.** PHX and AZ are both underlined in yellow on the badge.
+That rule is reused site-wide under every kicker and eyebrow, so the brand reads
+even in places the logo does not appear.
 
 **For the logo itself**, save it to `public/media/brand/` and name it in
 `data/media.ts`:
