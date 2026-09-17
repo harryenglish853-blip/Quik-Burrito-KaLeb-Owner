@@ -40,6 +40,12 @@ export const brand = {
 
   website: 'https://www.quikburritoaz.com/',
 
+  /** Studio credit shown in the footer. */
+  credit: {
+    label: 'Noir Echelon',
+    url: 'https://www.noirechelon.tech/',
+  },
+
   /**
    * Verified facts, each with a source. Anything not listed here is not claimed
    * on the site — no founding date, no store count, no awards, no "never frozen",

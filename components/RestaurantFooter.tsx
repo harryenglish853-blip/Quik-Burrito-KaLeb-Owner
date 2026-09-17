@@ -81,6 +81,12 @@ export function RestaurantFooter() {
           © {new Date().getFullYear()} {brand.legalName}. Hours and prices can change —
           the live ordering page is always current.
         </p>
+        <p className="foot__credit">
+          Website created by{' '}
+          <a href={brand.credit.url} target="_blank" rel="noopener noreferrer">
+            {brand.credit.label}
+          </a>
+        </p>
       </div>
     </footer>
   );

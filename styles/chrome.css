@@ -556,3 +556,23 @@ body { padding-bottom: var(--mobile-bar-h); }
   backdrop-filter: blur(6px);
 }
 .reel__escape:hover { background: rgba(0, 0, 0, .86); }
+
+/* Studio credit. Sits with the copyright line, quieter than it, and moves to
+   the end of the row once there is width for both. */
+.foot__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .4rem 1.5rem;
+}
+.foot__legal p { margin: 0; }
+.foot__credit { color: rgba(255, 248, 237, .5); }
+.foot__credit a {
+  color: rgba(255, 248, 237, .75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 248, 237, .25);
+  padding-bottom: 1px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.foot__credit a:hover { color: var(--brand); border-bottom-color: var(--brand); }
