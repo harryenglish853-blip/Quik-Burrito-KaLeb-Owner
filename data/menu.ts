@@ -49,7 +49,7 @@ export const menu: MenuCategory[] = [
   {
     id: 'signature-burritos',
     name: 'Signature Burritos',
-    blurb: 'The ones people drive across town for.',
+    blurb: 'Carne asada, shrimp, fries and QB sauce.',
     items: [
       {
         id: 'surf-and-turf',
@@ -91,7 +91,7 @@ export const menu: MenuCategory[] = [
   {
     id: 'breakfast',
     name: 'Breakfast',
-    blurb: 'Served from open.',
+    blurb: null,
     items: [
       {
         id: 'breakfast-burrito',

@@ -48,7 +48,7 @@ export function PeopleScene() {
             A family-run kitchen in Arizona. The reel is theirs — press play.
           </p>
           <div className="cta-row">
-            <InstagramFollow />
+            <InstagramFollow onFilm />
           </div>
         </Copy>
       </div>

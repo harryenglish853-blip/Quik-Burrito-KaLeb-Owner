@@ -6,97 +6,42 @@
 .wordstack { position: relative; display: grid; place-items: center; min-height: 7rem; }
 .wordstack > * { grid-area: 1 / 1; }
 
-/* ---- Scene 3: the grill ---- */
-.grill { position: relative; width: 100%; height: 100%; }
-.grill__back {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(40% 30% at 20% 24%, rgba(190,200,210,.28), transparent 70%),
-    radial-gradient(35% 26% at 76% 18%, rgba(190,200,210,.22), transparent 70%);
-}
-.grill__bars {
-  position: absolute; inset: 42% 0 0;
-  background: repeating-linear-gradient(
-    96deg,
-    rgba(22,14,8,.95) 0 14px,
-    rgba(72,52,36,.85) 14px 22px,
-    rgba(22,14,8,.95) 22px 36px
-  );
-  transform: perspective(700px) rotateX(58deg);
-  transform-origin: bottom center;
-  box-shadow: inset 0 40px 80px rgba(255,120,30,.25);
-}
-.grill__sear {
-  position: absolute;
-  border-radius: 28% / 46%;
-  background: linear-gradient(170deg, #c9651f 0%, #8a3410 48%, #4a1a06 100%);
-  box-shadow: 0 14px 26px -8px rgba(0,0,0,.8), inset 0 -6px 14px rgba(0,0,0,.5);
-}
-.grill__sear::after {
-  content: '';
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: repeating-linear-gradient(96deg, rgba(30,14,6,.7) 0 5px, transparent 5px 20px);
-  opacity: .8;
-}
-.grill__sear--a { width: 30%; height: 13%; left: 14%; top: 50%; }
-.grill__sear--b { width: 24%; height: 11%; left: 46%; top: 60%; }
-.grill__sear--c { width: 20%; height: 9%;  left: 70%; top: 52%; }
-
-/* ---- Scene 4: the prep line ---- */
-.prep {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: clamp(.4rem, 1.6vw, 1.1rem);
-  width: 100%;
-  padding-inline: var(--gutter);
-}
-.st {
-  position: relative;
-  flex: 1 1 0;
-  max-width: 9rem;
-  border-radius: 14px 14px 8px 8px;
-  box-shadow: 0 18px 34px -18px rgba(0,0,0,.7), inset 0 6px 14px rgba(255,255,255,.25);
-  transform-origin: bottom center;
-  display: grid;
-  align-items: end;
-  justify-items: center;
-  padding-bottom: .5rem;
-}
-.st__label {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(.52rem, 1.5vw, .72rem);
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(26,18,11,.75);
-  background: rgba(var(--surface-rgb), .8);
-  border-radius: 999px;
-  padding: .15rem .5rem;
-  white-space: nowrap;
-}
-.st--tortilla { height: 5rem;  background: linear-gradient(#f6e3c5, #d9b47d); }
-.st--meat     { height: 7.5rem; background: linear-gradient(#a34d1e, #5e2a0d); }
-.st--rice     { height: 6.5rem; background: linear-gradient(#fff5e0, #e3cfa3); }
-.st--beans    { height: 5.5rem; background: linear-gradient(#6b4326, #3d2413); }
-.st--cheese   { height: 4.5rem; background: linear-gradient(#ffd97a, #eeae35); }
-.st--pico     { height: 6rem;   background: linear-gradient(#d13a22, #8c2f18); }
-.st--meat .st__label, .st--beans .st__label, .st--pico .st__label { color: rgba(26,18,11,.8); }
-
-/* The tortilla wipe that hides the cut */
+/* ---- Scene 4: the tortilla wipe that hides the cut ---- */
 .wrapwipe {
   position: absolute;
   left: -12%; right: -12%; bottom: 0;
   height: 135%;
   border-radius: 46% 46% 0 0 / 28% 28% 0 0;
   background:
-    radial-gradient(60% 40% at 30% 18%, rgba(255,255,255,.4), transparent 60%),
+    radial-gradient(60% 40% at 30% 18%, rgba(255, 255, 255, .4), transparent 60%),
     linear-gradient(175deg, #f7e7c8 0%, #e3c188 42%, #b98c4e 100%);
-  box-shadow: 0 -24px 50px -18px rgba(90,52,20,.6);
+  box-shadow: 0 -24px 50px -18px rgba(90, 52, 20, .6);
 }
 
-/* ---- Scene 8: storefront + sky ---- */
+/* Ingredients, in the order they go in. Light up one at a time. */
+.steps {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+}
+.steps__item {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--step--1);
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(26, 18, 11, .45);
+  border: 1px solid rgba(255, 248, 237, .35);
+  border-radius: 999px;
+  padding: .38rem .85rem;
+  white-space: nowrap;
+}
+
+/* ---- Scene 8: sky, sun and the restaurant ---- */
 .sky { background-size: 100% 300%; }
 .sun {
   position: absolute;
@@ -104,44 +49,25 @@
   aspect-ratio: 1;
   left: 50%; top: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, #fff6d8 0%, #ffc24b 46%, rgba(242,129,44,0) 72%);
+  background: radial-gradient(circle, #fff6d8 0%, var(--sun) 46%, rgba(242, 129, 44, 0) 72%);
   filter: blur(2px);
 }
-.storefront {
-  position: relative;
-  width: min(92vw, 940px);
-  aspect-ratio: 16 / 9;
-  align-self: end;
-  margin-bottom: 8vh;
-  border-radius: 10px;
-  background: linear-gradient(180deg, #3b2717 0%, #24170d 100%);
-  box-shadow: 0 40px 70px -30px rgba(0,0,0,.8);
-  overflow: hidden;
+.day__shot { position: relative; width: min(84vw, 880px); }
+/* The storefront shot is wide by design — let it fill its wrapper rather than
+   sitting at the default subject width, which left it off-centre. */
+.sc-day .subject--frame { width: 100%; }
+/* Evening: the windows warm up from inside. */
+.duskglow {
+  position: absolute;
+  inset: 12% 8% 10%;
+  border-radius: 18px;
+  background: radial-gradient(60% 70% at 50% 72%, rgba(255, 196, 96, .6), transparent 72%);
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
-.storefront__band {
-  position: absolute; inset: 0 0 auto; height: 30%;
-  background: linear-gradient(180deg, var(--brand), var(--salsa));
-}
-.storefront__sign {
-  position: absolute; top: 6%; left: 50%; transform: translateX(-50%);
-  font-family: var(--font-display), sans-serif;
-  font-weight: 900;
-  font-size: clamp(1.1rem, 4.2vw, 2.6rem);
-  letter-spacing: .06em;
-  color: var(--cream);
-  text-shadow: 0 2px 10px rgba(0,0,0,.45);
-  white-space: nowrap;
-}
-.storefront__window {
-  position: absolute; inset: 34% 6% 8%;
-  border-radius: 6px;
-  background: linear-gradient(170deg, rgba(180,210,230,.4) 0%, rgba(40,28,18,.85) 60%);
-  box-shadow: inset 0 0 40px rgba(0,0,0,.6);
-}
-.storefront__light {
-  position: absolute; inset: 34% 6% 8%;
-  border-radius: 6px;
-  background: radial-gradient(70% 60% at 50% 70%, rgba(255,205,120,.75), transparent 72%);
+
+@media (max-width: 899px) {
+  .day__shot { width: min(90vw, 460px); }
 }
 
 /* ---- Scene 9: people / reel ---- */
@@ -310,32 +236,11 @@
   padding: 4rem 0 3rem;
 }
 
-.closing__set { position: relative; display: grid; place-items: center; width: 100%; }
-.closing__salsa {
-  position: absolute; right: 12%; bottom: 14%;
-  width: clamp(54px, 9vw, 110px); aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #ef7a4a, #9b1b10 70%);
-  box-shadow: 0 16px 30px -12px rgba(0,0,0,.7), inset 0 -6px 14px rgba(0,0,0,.4);
-}
-.closing__drink {
-  position: absolute; left: 10%; bottom: 10%;
-  width: clamp(44px, 7vw, 84px); height: clamp(72px, 12vw, 140px);
-  border-radius: 8px 8px 12px 12px;
-  background: linear-gradient(170deg, rgba(220,235,245,.85), rgba(150,180,200,.75));
-  box-shadow: 0 18px 34px -14px rgba(0,0,0,.7), inset -8px 0 14px rgba(255,255,255,.4);
-}
+
+
+
 /* condensation */
-.closing__drink::after {
-  content: '';
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background:
-    radial-gradient(circle at 26% 22%, rgba(255,255,255,.9) 0 2px, transparent 3px),
-    radial-gradient(circle at 62% 38%, rgba(255,255,255,.75) 0 1.5px, transparent 2.5px),
-    radial-gradient(circle at 40% 62%, rgba(255,255,255,.8) 0 2px, transparent 3px),
-    radial-gradient(circle at 72% 74%, rgba(255,255,255,.7) 0 1.5px, transparent 2.5px);
-}
+
 
 /* ---- Breakfast scene reads on light ---- */
 .sc-breakfast__copy .copy__title,

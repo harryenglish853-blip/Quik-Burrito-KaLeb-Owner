@@ -69,10 +69,10 @@ export function InstagramReel({
   );
 }
 
-export function InstagramFollow() {
+export function InstagramFollow({ onFilm = false }: { onFilm?: boolean }) {
   return (
     <a
-      className="btn btn--secondary"
+      className={`btn ${onFilm ? 'btn--onfilm' : 'btn--secondary'}`}
       href={brand.social.instagram.url}
       target="_blank"
       rel="noopener noreferrer"

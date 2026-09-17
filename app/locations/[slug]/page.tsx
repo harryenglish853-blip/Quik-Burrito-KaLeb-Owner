@@ -90,7 +90,7 @@ export default async function LocationPage({ params }: Props) {
           </section>
 
           <section className="locpage__food">
-            <h2 className="locpage__h">What they&rsquo;re known for</h2>
+            <h2 className="locpage__h">From the menu</h2>
             <div className="locpage__plates">
               {visibleMenu
                 .flatMap((c) => c.items)

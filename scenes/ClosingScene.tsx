@@ -46,11 +46,7 @@ export function ClosingScene() {
         </Layer>
 
         <Layer name="subject">
-          <div className="closing__set">
-            <FoodSubject variant="burrito-bitten" slotName="bitten-burrito" />
-            <span className="closing__salsa" aria-hidden="true" />
-            <span className="closing__drink" aria-hidden="true" />
-          </div>
+          <FoodSubject variant="burrito-bitten" slotName="bitten-burrito" />
         </Layer>
 
         <Vignette strength={0.6} />

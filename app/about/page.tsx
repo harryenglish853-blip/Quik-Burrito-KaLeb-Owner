@@ -28,10 +28,9 @@ export default function AboutPage() {
         <div className="about__text">
           <h2 className="locpage__h">The short version</h2>
           <p>
-            Quik Burrito is run by Arizonans, and the menu stays deliberately tight:
-            burritos built to order, breakfast burritos, birria tacos served with
-            consommé, quesadillas, nachos and loaded fries. Order online for pickup or
-            call the store.
+            Quik Burrito is run by Arizonans. The menu covers burritos built to order,
+            breakfast burritos, birria tacos served with consommé, quesadillas, nachos
+            and loaded fries. Order online for pickup or call the store.
           </p>
           <p>
             {/* Only claims backed by a public source appear on this site. No founding

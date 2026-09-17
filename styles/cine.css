@@ -674,33 +674,39 @@
   .cine--split .subject,
   .cine--split-r .subject { width: min(42vw, 480px); }
 
+  /* The stage is a centring grid, so the copy needs an explicit justify-self —
+     auto margins alone are ignored under `place-items: center`. */
   .cine--split .layer--subject {
     justify-items: end;
-    padding-right: 4vw;
-    padding-left: 48vw;
+    padding-right: 7vw;
+    padding-left: 50vw;
   }
   .cine--split .copy {
+    justify-self: start;
     text-align: left;
-    margin-left: 0;
-    width: min(46vw, 620px);
-    margin-right: auto;
+    width: min(44vw, 580px);
+    margin-inline: 0;
     padding-left: max(var(--gutter), calc((100vw - var(--shell)) / 2));
   }
-  .cine--split .cta-row { justify-content: flex-start; }
-  .cine--split .copy__sub { margin-left: 0; }
 
-  /* Mirrored variant — camera finds the subject on the other side. */
+  /* Mirrored variant — the camera finds the subject on the other side. */
   .cine--split-r .layer--subject {
     justify-items: start;
-    padding-left: 4vw;
-    padding-right: 48vw;
+    padding-left: 7vw;
+    padding-right: 50vw;
   }
   .cine--split-r .copy {
-    margin-left: auto;
-    margin-right: 0;
-    padding-left: 0;
+    justify-self: end;
+    text-align: left;
+    width: min(44vw, 580px);
+    margin-inline: 0;
     padding-right: max(var(--gutter), calc((100vw - var(--shell)) / 2));
   }
+
+  .cine--split .cta-row,
+  .cine--split-r .cta-row { justify-content: flex-start; }
+  .cine--split .copy__sub,
+  .cine--split-r .copy__sub { margin-left: 0; }
 }
 
 /* Mobile: stack the composition rather than overlapping it — the shot takes
@@ -991,4 +997,41 @@
     padding-bottom: calc(var(--mobile-bar-h) + 1rem);
   }
   .sc-showcase__copy { padding-bottom: calc(var(--mobile-bar-h) + 1rem); }
+}
+
+/* ============================================================
+   STACKED COMPOSITION
+   For wide (16:9) shots that a side-by-side split would squeeze:
+   the shot takes the upper frame, the copy sits beneath it on a
+   scrim. Same idea as the mobile treatment, at every width.
+   ============================================================ */
+.cine--stacked .layer--subject {
+  align-items: start;
+  padding-top: 9vh;
+  padding-inline: var(--gutter);
+}
+.cine--stacked .copy {
+  align-self: end;
+  margin-top: auto;
+  padding: 1.6rem var(--gutter) 7vh;
+}
+.cine--stacked .copy::before {
+  content: '';
+  position: absolute;
+  inset: -40% -50% 0;
+  z-index: -1;
+  background: linear-gradient(0deg,
+    rgba(26, 18, 11, .92) 0%,
+    rgba(26, 18, 11, .78) 46%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 899px) {
+  .cine--stacked .layer--subject { padding-top: 12vh; }
+  .cine--stacked .copy { padding-bottom: calc(var(--mobile-bar-h) + 1rem); }
+}
+@media (max-height: 460px) and (orientation: landscape) {
+  .cine--stacked .layer--subject { align-items: center; padding-top: 0; }
+  .cine--stacked .copy { align-self: center; margin-top: 0; padding-bottom: 1rem; }
 }

@@ -11,6 +11,9 @@ export type SubjectVariant =
   | 'birria-dip'
   | 'breakfast'
   | 'bowl'
+  | 'grill'
+  | 'prep'
+  | 'storefront'
   | 'bag';
 
 /**
@@ -38,6 +41,9 @@ const FRAME: Record<SubjectVariant, { tone: FoodTone; ratio: string; label: stri
   'birria-dip':     { tone: 'birria',    ratio: '4 / 5', label: 'Birria taco dipped in consommé' },
   'breakfast':      { tone: 'breakfast', ratio: '4 / 3', label: 'Breakfast burrito in morning light' },
   'bowl':           { tone: 'greens',    ratio: '1 / 1', label: 'Burrito bowl' },
+  'grill':          { tone: 'asada',     ratio: '4 / 3', label: 'Meat on the grill — sear, steam and flame' },
+  'prep':           { tone: 'salsa',     ratio: '4 / 3', label: 'The prep line — a burrito being built to order' },
+  'storefront':     { tone: 'fries',     ratio: '16 / 9', label: 'The restaurant — counter, signage, Arizona light' },
   'bag':            { tone: 'tortilla',  ratio: '3 / 4', label: 'Finished order on the counter' },
 };
 

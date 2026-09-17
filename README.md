@@ -11,6 +11,54 @@ with one hand.
 
 ---
 
+## Showing this to the client
+
+```bash
+npm install
+npm run build && npm start      # http://localhost:3000
+```
+
+Use the production build for a demo, not `npm run dev` — dev mode recompiles on
+navigation and the cinematic scroll stutters.
+
+**Walk it in this order.** Scroll slowly; the camera is tied to the wheel, so
+the pace is yours. Scroll back up anywhere and the move runs in reverse.
+
+1. **The hero** — brand, tagline and ORDER ONLINE are on screen in the first
+   frame. Nothing to wait through.
+2. **Scroll through the chapters** — burrito, ingredients, grill, the build,
+   the signature dishes (watch focus move dish to dish), the birria dip,
+   breakfast opening into Arizona morning light, the restaurant through the day.
+3. **Tap MENU from anywhere** — it opens instantly. Point out it never waits on
+   the scroll.
+4. **The reviews section** — this is the honest one. Worth a sentence: no
+   testimonial is invented, and the moment they hand over real reviews it fills
+   in automatically.
+5. **Locations** — pick the store, watch the phone, hours and ordering follow it.
+6. **Resize to a phone**, or open it on one. The composition restacks — it is
+   not the desktop layout shrunk down.
+7. **End on the finale** — the largest ORDER ONLINE on the site.
+
+### The photo slots are the ask
+
+Every image is a labelled frame at the exact size and crop the real photograph
+will occupy. Leave them visible in the meeting — they make the request concrete
+and they are the fastest way to get the assets. The site is built so that
+dropping in real photography finishes it without touching a line of animation.
+
+If you would rather present without them, it is one line — set
+`showSlotBadges: false` in `data/media.ts` and rebuild. The frames stay; only
+the labels go.
+
+### What to say about the colours
+
+The palette and fonts are placeholders chosen to suit the brand, not their real
+ones — their logo could not be reached from the build environment. Ask for the
+logo file in the meeting; `npm run brand:extract` reads the exact palette out of
+it, and the whole site recolours from a single file.
+
+---
+
 ## Run it locally
 
 ```bash
