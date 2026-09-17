@@ -3,6 +3,7 @@
 import React from 'react';
 import { reviewsFor, reviewSourcesFor, Review } from '@/data/reviews';
 import { track } from '@/lib/analytics';
+import { ArrowIcon } from './icons';
 
 /**
  * Reviews, presented as order tickets pinned to the wall.
@@ -52,7 +53,7 @@ export function ReviewWall({ locationId }: { locationId: string }) {
             >
               <span className="srccard__name">{s.source}</span>
               <span className="srccard__label">{s.label}</span>
-              <span className="srccard__go" aria-hidden="true">→</span>
+              <ArrowIcon className="srccard__go" />
             </a>
           </li>
         ))}

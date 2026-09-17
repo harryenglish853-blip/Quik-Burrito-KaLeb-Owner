@@ -91,6 +91,14 @@ if (/showSlotBadges:\s*true/.test(mediaSrc)) {
 } else {
   say('     ✓ Slot badges off — real photography assumed in place.');
 }
+
+// A photo that is not the restaurant's own must never be captioned as if it were.
+for (const m of mediaSrc.matchAll(/(\w+):\s*\{[^}]*?provenance:\s*'unconfirmed'/gs)) {
+  open++;
+  say(`     · Photo "${m[1]}" has provenance 'unconfirmed' — confirm whether it is`);
+  say("       Quik Burrito's own food or a representative dish shot, then set");
+  say("       provenance to 'restaurant' or 'representative' in data/media.ts.");
+}
 say('');
 
 say('  ' + '='.repeat(46));

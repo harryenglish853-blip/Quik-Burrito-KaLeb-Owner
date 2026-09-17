@@ -76,15 +76,20 @@ export function FoodSubject({
   const frame = FRAME[variant];
 
   if (src) {
+    // A real photograph goes inside the same frame as the placeholder, so it
+    // inherits the chapter's geometry, crop, radius and shadow — and so every
+    // camera move written against the frame keeps working untouched.
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={`/media/${src}`}
-        alt={alt ?? ''}
-        className={`subject subject--photo ${className}`}
-        loading="lazy"
-        decoding="async"
-      />
+      <div
+        className={`subject subject--frame subject--shot ${className}`}
+        style={{ '--ratio': frame.ratio } as React.CSSProperties}
+      >
+        <div className="mslot mslot--photo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/media/${src}`} alt={alt ?? ''} loading="lazy" decoding="async" />
+          {steam ? <Steam count={3} className="mslot__steam" /> : null}
+        </div>
+      </div>
     );
   }
 

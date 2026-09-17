@@ -6,7 +6,7 @@ import { CineScene, Layer, Copy, BuildArgs } from './CineScene';
 import { FoodPlate } from '@/components/FoodPlate';
 import { Vignette } from '@/components/atmosphere';
 import { ViewMenuButton } from '@/components/actions';
-import { visibleMenu } from '@/data/menu';
+import { visibleMenu, findItem } from '@/data/menu';
 
 /**
  * SCENE 5 — SIGNATURE FOOD (45–57%)
@@ -73,7 +73,14 @@ export function MenuShowcase() {
         <div className="table">
           {SHOWCASE.map((d, i) => (
             <div key={d.id} className={`dish dish-${i}`}>
-              <FoodPlate tone={d.tone} ratio="4 / 5" sizes="(max-width: 768px) 60vw, 22vw" slotName={d.id} />
+              <FoodPlate
+                tone={d.tone}
+                src={findItem(d.id)?.image ?? null}
+                alt={findItem(d.id)?.image ? `${d.name} from Quik Burrito` : undefined}
+                ratio="4 / 5"
+                sizes="(max-width: 768px) 60vw, 22vw"
+                slotName={d.id}
+              />
               <span className={`dish__name dishname-${i}`}>{d.name}</span>
             </div>
           ))}

@@ -125,7 +125,7 @@ export const menu: MenuCategory[] = [
         name: 'Birria Tacos',
         description: 'Served with consommé for dipping.',
         price: null,
-        image: null,
+        image: 'food/birria-tacos.webp',
         tone: 'birria',
         verified: true,
       },

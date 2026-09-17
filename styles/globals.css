@@ -99,8 +99,10 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 0.94;
+  /* Archivo Black is already wide; negative tracking keeps big headings tight
+     instead of sprawling. */
+  letter-spacing: -0.025em;
   margin: 0 0 0.4em;
   text-wrap: balance;
 }
@@ -179,12 +181,19 @@ button { font: inherit; }
     transform 0.18s var(--ease-out-soft),
     box-shadow 0.25s var(--ease-out-soft),
     background-color 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 10px 26px -12px rgba(var(--brand-rgb), .85);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .18), 0 6px 16px -8px rgba(0, 0, 0, .45);
   will-change: transform;
 }
 
-.btn:hover { background: var(--brand-hot); transform: translateY(-2px); }
-.btn:active { transform: translateY(1px) scale(0.985); }
+.btn:hover {
+  background: var(--brand-hot);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .16), 0 12px 24px -12px rgba(0, 0, 0, .5);
+}
+.btn:active { transform: translateY(0); box-shadow: 0 1px 1px rgba(0, 0, 0, .2); }
+
+/* Icons ride the type, not the baseline. */
+.btn .icon { width: 1.05em; height: 1.05em; flex: 0 0 auto; margin-top: -0.05em; }
 
 /* Primary — ORDER ONLINE. Always the loudest thing on screen. */
 .btn--order {
@@ -243,7 +252,9 @@ button { font: inherit; }
    ============================================================ */
 .on-film {
   color: var(--cream);
-  text-shadow: 0 2px 20px rgba(26, 18, 11, 0.55), 0 1px 3px rgba(26, 18, 11, 0.7);
+  /* One soft shadow for separation. The old double shadow read as a glow and
+     thickened the letterforms. */
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
 }
 
 .eyebrow {

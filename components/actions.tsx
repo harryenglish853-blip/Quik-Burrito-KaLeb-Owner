@@ -6,6 +6,7 @@ import { show } from '@/data/verification';
 import { useLocation } from '@/lib/location-context';
 import { useMenuDrawer } from '@/lib/menu-drawer-context';
 import { track } from '@/lib/analytics';
+import { PhoneIcon, PinIcon } from './icons';
 
 /* ------------------------------------------------------------------
    ORDER ONLINE — the primary action. One click, always live, never dead.
@@ -90,7 +91,7 @@ export function CallButton({
       className={className}
       onClick={() => track('call_click', { location_id: loc.id, surface })}
     >
-      <span aria-hidden="true">📞</span>
+      <PhoneIcon />
       <span>{showNumber ? pretty : 'Call'}</span>
       <span className="sr-only">Call Quik Burrito {loc.shortName}</span>
     </a>
@@ -127,7 +128,7 @@ export function DirectionsButton({
       className={className}
       onClick={() => track('directions_click', { location_id: loc.id, surface })}
     >
-      <span aria-hidden="true">📍</span>
+      <PinIcon />
       <span>{label}</span>
       <span className="sr-only">
         {address ? ` to Quik Burrito at ${address}` : ''} (opens in maps)

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { brand } from '@/data/brand';
 import { track } from '@/lib/analytics';
+import { PlayIcon } from './icons';
 
 /**
  * Instagram reel, loaded on demand.
@@ -48,7 +49,7 @@ export function InstagramReel({
         >
           <span className="reel__grain" aria-hidden="true" />
           <span className="reel__play" aria-hidden="true">
-            ▶
+            <PlayIcon />
           </span>
           <span className="reel__label">{caption}</span>
           <span className="reel__handle">{brand.social.instagram.handle}</span>
