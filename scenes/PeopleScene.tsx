@@ -45,7 +45,7 @@ export function PeopleScene() {
             {brand.campaign.people[2]}
           </h2>
           <p className="copy__sub">
-            A family-run kitchen in Arizona. The reel is theirs — press play.
+            A family-run kitchen in Arizona. The reel is their own.
           </p>
           <div className="cta-row">
             <InstagramFollow onFilm />

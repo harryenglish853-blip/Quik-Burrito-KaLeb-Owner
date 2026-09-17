@@ -54,6 +54,33 @@ export const foodPhotos: Record<string, FoodPhoto> = {
   },
 };
 
+/**
+ * VIDEO
+ * =====
+ * Point `reel` at a file under /public/media and the site plays it natively:
+ * fastest, works everywhere, and needs nothing from instagram.com.
+ *
+ * With `reel` null the site falls back to Instagram's embed, which is fine on a
+ * normal domain but is blocked anywhere with a strict frame policy — including
+ * the static preview — so the page shows a link out to Instagram instead of an
+ * empty frame.
+ *
+ * TO SELF-HOST (recommended):
+ *   1. Download the reel from Instagram — Quik Burrito can export their own
+ *      post from the app, or from the Meta Business Suite content library.
+ *   2. Save it as public/media/video/reel.mp4 (H.264/AAC, ~1080x1920, under
+ *      ~8MB so it starts fast on cellular).
+ *   3. Save a first frame as public/media/video/reel-poster.jpg.
+ *   4. Fill both fields below.
+ */
+export const videoAssets: {
+  reel: string | null;
+  reelPoster: string | null;
+} = {
+  reel: null,
+  reelPoster: null,
+};
+
 export const mediaConfig = {
   /** Small corner tags marking each empty photo slot. Set false once real photos are in. */
   showSlotBadges: true,

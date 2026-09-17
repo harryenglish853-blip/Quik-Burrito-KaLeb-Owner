@@ -30,8 +30,7 @@ export const brand = {
     instagram: {
       handle: '@quikburrito',
       url: 'https://www.instagram.com/quikburrito/',
-      /** Reel supplied by the owner for this build. */
-      featuredReelUrl: 'https://www.instagram.com/reel/DVeVnssEoPv/',
+        featuredReelUrl: 'https://www.instagram.com/reel/DVeVnssEoPv/',
     },
     /* Real profile, kept for reference. Deliberately NOT surfaced on the site
        and not listed in structured data: reviews are confined to Google, Yelp

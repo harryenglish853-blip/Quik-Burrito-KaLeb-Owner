@@ -416,8 +416,17 @@ body { padding-bottom: var(--mobile-bar-h); }
   font-weight: 800;
   text-shadow: 0 2px 12px rgba(0,0,0,.6);
 }
-.reel__label { bottom: 2.6rem; font-size: 1.05rem; letter-spacing: .04em; }
-.reel__handle { bottom: 1.1rem; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; opacity: .85; }
+.reel__label { bottom: 3.1rem; font-size: 1.05rem; letter-spacing: .04em; right: 1rem; }
+.reel__handle {
+  bottom: 1.2rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: .8rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .85;
+}
 .reel__cap { margin-top: .7rem; font-size: var(--step--1); }
 
 /* ---------------- Footer ---------------- */
@@ -475,3 +484,75 @@ body { padding-bottom: var(--mobile-bar-h); }
 /* The badge is black-on-transparent, so give it a ring of breathing room when
    it sits on the solid white header. */
 .hdr--solid .logo-img { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .25)); }
+
+/* ---- Reel: self-hosted video ---- */
+.reel__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+/* ---- Reel: link-out, when the embed cannot play in the page ---- */
+.reel__poster--link { text-decoration: none; display: block; }
+.reel__handle-go {
+  width: .9em;
+  height: .9em;
+  margin-left: .35rem;
+  vertical-align: -0.08em;
+}
+.reel__poster--link:hover .reel__handle-go { transform: translateX(3px); }
+.reel__handle-go { transition: transform .2s var(--ease-out-soft); }
+
+.reel__loading {
+  position: absolute;
+  inset: auto 0 1rem;
+  text-align: center;
+  color: rgba(255, 255, 255, .8);
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.reel__note {
+  margin: .5rem 0 0;
+  font-size: .7rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.reel__note code {
+  background: rgba(0, 0, 0, .07);
+  border-radius: 4px;
+  padding: .05rem .3rem;
+  font-size: .95em;
+}
+/* On the dark cinematic chapters the note needs to sit on film. */
+.people .reel__note { color: rgba(255, 255, 255, .6); }
+.people .reel__note code { background: rgba(255, 255, 255, .12); }
+
+/* An escape link over the embed. A cross-origin frame cannot be checked from
+   the page, so rather than guess whether the reel is playing, offer the way out
+   regardless — useful either way, and never a dead end. */
+.reel__escape {
+  position: absolute;
+  left: 50%;
+  bottom: .9rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: .1rem;
+  white-space: nowrap;
+  font-family: var(--font-body), sans-serif;
+  font-size: .74rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(0, 0, 0, .72);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  padding: .4rem .85rem;
+  backdrop-filter: blur(6px);
+}
+.reel__escape:hover { background: rgba(0, 0, 0, .86); }
