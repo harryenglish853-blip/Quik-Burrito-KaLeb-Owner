@@ -48,6 +48,17 @@ try {
     rmSync(REAL, { force: true });
     renameSync(BACKUP, REAL);
   }
+  /**
+   * Clear .next on the way out.
+   *
+   * The preview shares .next with the server build but compiles with a relative
+   * assetPrefix. Leaving it behind meant a later `npm start` served the preview
+   * as if it were production: `./_next/...` resolves at / and /menu but 404s
+   * from a nested route like /locations/anthem, so that page rendered with no
+   * stylesheet at all. Removing it makes `npm start` fail loudly with "no
+   * production build found" instead of serving a subtly broken site.
+   */
+  rmSync('.next', { recursive: true, force: true });
 }
 
 

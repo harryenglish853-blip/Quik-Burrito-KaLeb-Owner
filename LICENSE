@@ -1,0 +1,36 @@
+COPYRIGHT AND OWNERSHIP — DECISION REQUIRED
+===========================================
+
+Ownership of this site's source code has not been set. Until it is, the default
+position applies: under US law the author holds copyright unless it is assigned
+in writing, so absent an agreement the studio retains it and the restaurant has
+no recorded right to reuse or modify the code.
+
+That is almost certainly not what either side assumes. Pick one and replace this
+file.
+
+OPTION A — The restaurant owns it outright
+    Normal when a site is billed as work-for-hire and the client expects to take
+    it to another developer later. Requires a written assignment; "work made for
+    hire" does not attach automatically to commissioned software.
+
+        Copyright (c) 2026 Quik Burrito. All rights reserved.
+        Developed by Noir Echelon (https://www.noirechelon.tech/) and assigned
+        to Quik Burrito under the parties' written agreement.
+
+OPTION B — The studio owns it and licenses it to the restaurant
+    Normal when the studio reuses its own framework across clients. The licence
+    should say plainly what the restaurant may do: run the site, have it hosted
+    and maintained, and, if agreed, have another developer modify it.
+
+        Copyright (c) 2026 Noir Echelon. All rights reserved.
+        Licensed to Quik Burrito for operation of its own website under the
+        parties' written agreement.
+
+WHAT THIS FILE DOES NOT COVER
+    Third-party components keep their own licences regardless of which option is
+    chosen — see LICENSING.md. The restaurant's logo, brand and any photographs
+    they supply remain theirs and are not transferred by either option.
+
+This is not legal advice. Whichever option is chosen should match what the
+signed agreement between the two parties actually says.

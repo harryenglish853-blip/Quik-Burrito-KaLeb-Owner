@@ -5,7 +5,7 @@
  * Prints every fact the site is NOT yet confident about, so nothing unverified
  * reaches customers by accident. Run: npm run prelaunch
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.cwd();
@@ -98,6 +98,26 @@ for (const m of mediaSrc.matchAll(/(\w+):\s*\{[^}]*?provenance:\s*'unconfirmed'/
   say(`     · Photo "${m[1]}" has provenance 'unconfirmed' — confirm whether it is`);
   say("       Quik Burrito's own food or a representative dish shot, then set");
   say("       provenance to 'restaurant' or 'representative' in data/media.ts.");
+}
+say('');
+
+say('  6. Licensing');
+const fontDir = join(root, 'public', 'media', 'fonts');
+const oflPresent = existsSync(fontDir)
+  && readdirSync(fontDir).some((f) => /^OFL.*\.txt$/i.test(f));
+if (oflPresent) {
+  say('     \u2713 Verbatim font licence text present.');
+} else {
+  open++;
+  say('     \u00b7 The two redistributed webfonts need their verbatim OFL text');
+  say('       alongside them. See public/media/fonts/LICENSE.md.');
+}
+const licenceSrc = readFileSync(join(root, 'LICENSE'), 'utf8');
+if (/DECISION REQUIRED/.test(licenceSrc)) {
+  open++;
+  say('     \u00b7 Code ownership is undecided. Pick an option in LICENSE.');
+} else {
+  say('     \u2713 Code ownership recorded.');
 }
 say('');
 
